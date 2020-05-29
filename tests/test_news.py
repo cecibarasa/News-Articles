@@ -43,7 +43,7 @@ class ArticlesTest(unittest.TestCase):
 
     def test_to_check_instance_variables(self):
         self.assertEquals(self.new_article.id,'CNN')
-        self.assertEquals(self.new_article.author,'Amira Mugure')
+        self.assertEquals(self.new_article.author,'Cecilia Barasa')
         self.assertEquals(self.new_article.title,'Centonomy should help Africa grow')
         self.assertEquals(self.new_article.description,'A look at how centonomy can grow Africas blue economy')
         self.assertEquals(self.new_article.url,'centonomy.com')
