@@ -1,21 +1,22 @@
-{% macro displaySources(source_list)%} {% for source in source_list %}
-<div class="card mt-3" style="width: 300px;">
-    <div class="card-header" style="background-color: rgb(169, 218, 203);">
-        <h3 class="names">{{source.name}}</h3>
+{% macro displayNewsList(news_list) %} {% for news in news_list %}
+<div class="row">
+    <ul>
+        <li style="font-size:115%;"><a href="/news/{{news.id}}">{{news.name}}</a></li>
+    </ul>
+</div>
+{% endfor %} {% endmacro %} {% macro displayArticleList(articles_list) %} {% for news in articles_list %}
+<div class="card" style="height:auto; width:50%; margin-bottom:5%; margin-left:0%;">
+    <div class="card-header">
+        {{news.title}}
     </div>
-    <div class="card-body" style="background-color: rgb(169, 218, 203)">
-        <h5 class="card-title">{{source.description}}</h5>
-        <div class="row">
-            <div class="col-md-6">
-                <h5>language:{{source.language}}</h5>
-            </div>
-            <div class="col-md-6">
-                <h5>country:{{source.country}}</h5>
-            </div>
-        </div>
+    <div class="card-body">
+        <img src="{{news.urlToImage}}" alt="{{news.title}}" style="height:50%; width:50%;" />
+        <p><b><i>Written by: </i></b>{{news.author}}</p>
+        <p><b><i>Description: </i></b> {{news.description}}</p>
+        <p><b><i>Published at: </i></b> {{news.publishedAt}}</p>
     </div>
-    <div class="card-footer embed-responsive-item">
-        <a href="/sources/{{source.id}}" class="btn btn-info btn-sm">EXPLORE</a>
+    <div class="card-footer">
+        <b><i>Check full news at: </i></b><a href="{{news.url}}">{{news.name}}</a>
     </div>
 </div>
 {% endfor %} {% endmacro %}

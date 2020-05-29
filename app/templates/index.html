@@ -1,38 +1,83 @@
-{% extends 'base.html'%} {% import 'macros.html' as macro %}
+{% extends 'base.html'%} {% import 'macros.html' as macro%}
 
+<!-- styles block-->
+{% block styles %} {{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}"> {% endblock %}
+<!-- end of styles -->
 
-<html>
-{% block content %} {% block styles%} {{ super() }}
-<!-- <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}"> {% endblock %} -->
-
-<body style="background-color: #06f8ec" class="container-fluid">
-    <div class="row">
-        <!--Business -->
-        <div class="col-md-3">
-            <h3 class="list-group-item" style="background-color: #06f8ec; width: 300px;">BUSINESS</h3>
-            <p style="margin-left: 10px">{{macro.displaySources(business)}}</p>
+{% block content %}
+<div class="container-fluid">
+    <div class="in" style="background-color: #bbbfc1;font-size: 35px; text-align:center;">
+        <p>GENERAL SOURCES</p>
+        <div class="row">
+            <div class="column">
+                <div class="card"><a data-toggle="tab" href="#general">GENERAL</a></div>
+            </div>
+            <div class="column">
+                <div class="card"><a data-toggle="tab" href="#technology">TECHNOLOGY</a></div>
+            </div>
+            <div class="column">
+                <div class="card"><a data-toggle="tab" href="#entertainment">ENTERTAINMENT</a></div>
+            </div>
+            <div class="column">
+                <div class="card"><a data-toggle="tab" href="#health">HEALTH</a></div>
+            </div>
         </div>
-
-        <!-- Entertainment  -->
-        <div class="col-md-3">
-            <h3 class="list-group-item" style="width: 300px; text-align:center;background-color: #c9f1e1"> ENTERTAINMENT </h3>
-            <p>{{macro.displaySources(entertainment)}}</p>
-        </div>
-
-        <!-- Technology -->
-        <div class="col-md-3">
-            <h3 class="list-group-item" style="width: 300px; text-align:center; background-color: #c9f1e1"> TECHNOLOGY </h3>
-            <p>{{macro.displaySources(technology)}}</p>
-        </div>
-
-        <!-- Sports -->
-        <div class="col-md-3" style="width: 100px;">
-            <h3 class="list-group-item" style="width: 300px; text-align:center; background-color: #c7f#c9f1e1"> SPORTS </h3>
-            <p>{{macro.displaySources(sports)}}</p>
+        <div class="row">
+            <div class="column">
+                <div class="card"><a data-toggle="tab" href="#science">SCIENCE</a></div>
+            </div>
+            <div class="column">
+                <div class="card"><a data-toggle="tab" href="#political">POLITICAL</a></div>
+            </div>
+            <div class="column">
+                <div class="card"><a data-toggle="tab" href="#business">BUSINESS</a></div>
+            </div>
+            <div class="column">
+                <div class="card"><a data-toggle="tab" href="#sports">SPORTS</a></div>
+            </div>
         </div>
     </div>
-</body>
+
+    <div class="tab-content">
+        <!-- <div class="inn" style="background-color:#84a3cc ; font-size: 18px;text-align:center;"> -->
+
+        <div id="general" class="tab-pane fade">
+
+            <!--general news section-->
+            {{macro.displayNewsList(general)}}
+        </div>
+        <div id="sports" class="tab-pane fade">
+            <!-- Sports news sources-->
+            {{ macro.displayNewsList(sports) }}text-align:center;
+        </div>
+        <div id="technology" class="tab-pane fade">
+            <!-- Technology news sources -->
+            {{ macro.displayNewsList(technology) }}
+        </div>
+        <div id="entertainment" class="tab-pane fade">
+            <!-- Entertainment news sources -->
+            {{ macro.displayNewsList(entertainment) }}
+        </div>
+        <div id="health" class="tab-pane fade">
+            <!-- Health news sources -->
+            {{ macro.displayNewsList(health) }}
+        </div>
+        <div id="business" class="tab-pane fade">
+            <!-- Business news sources -->
+            {{macro.displayNewsList(business)}}
+        </div>
+        <div id="political" class="tab-pane fade">
+            <!-- political news sources -->
+            {{ macro.displayNewsList(political) }}
+        </div>
+        <div id="science" class="tab-pane fade">
+            <!--Science news sources-->
+            {{macro.displayNewsList(science)}}
+        </div>
+    </div>
+    </style>
+</div>
+</div>
 
 {% endblock %}
-
-</html>
