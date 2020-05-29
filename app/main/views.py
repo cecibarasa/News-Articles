@@ -33,5 +33,14 @@ def articles(source):
 
     articles = get_articles(source)
     return render_template('article.html', articles=articles)
-    
-                  
+
+@main.route('/search/<article_name>')
+def search(article_name):
+    '''
+    Method that displays the search result
+    '''
+
+    article_name_list = article_name.split('')
+    article_name_format = "+".join(article_name_list)
+    search_articles = search_article(article_name_format)
+    return render_template('search.html', articles = search_articles)                
