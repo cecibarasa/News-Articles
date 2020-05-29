@@ -20,8 +20,9 @@ class ProdConfig(Config):
 
 class DevConfig(Config):
 
-    DEBUG = True
 
+    DEBUG = True
+    
 config_options ={
     'development':DevConfig,
     'production':ProdConfig
