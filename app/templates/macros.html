@@ -1,22 +1,11 @@
-{% macro displayNewsList(news_list) %} {% for news in news_list %}
-<div class="row">
-    <ul>
-        <li style="font-size:115%;"><a href="/news/{{news.id}}">{{news.name}}</a></li>
-    </ul>
-</div>
-{% endfor %} {% endmacro %} {% macro displayArticleList(articles_list) %} {% for news in articles_list %}
-<div class="card" style="height:auto; width:50%; margin-bottom:5%; margin-left:0%;">
-    <div class="card-header">
-        {{news.title}}
-    </div>
-    <div class="card-body">
-        <img src="{{news. urlToImage}}" alt="{{news.title}} " style="height:50%; width:50%; " />
-        <p><b><i>Written by: </i></b>{{news.author}}</p>
-        <p><b><i>Description: </i></b> {{news.description}}</p>
-        <p><b><i>Published at: </i></b> {{news.publishedAt}}</p>
-    </div>
-    <div class="card-footer ">
-        <b><i>Check full news at: </i></b><a href="{{news.url}} ">{{news.name}}</a>
+{% macro displayCatNews(catnews_list)%} {% for catnews in catnews_list %}
+<div class="col-md-3">
+    <div class="thumbnail">
+        <div class="updates">
+            <p style="font-weight:bold">{{catnews.name}}</p>
+            <p>{{catnews.description | truncate(50)}}</p>
+            <a href="/update/{{catnews.id}}">View</a>
+        </div>
     </div>
 </div>
-{% endfor %} {% endmacro %}
+{% endfor %} {%endmacro%}

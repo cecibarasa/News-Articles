@@ -1,83 +1,67 @@
 {% extends 'base.html'%} {% import 'macros.html' as macro%}
+<!DOCTYPE html>
+<html>
 
-<!-- styles block-->
-{% block styles %} {{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
-<link href="https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap" rel="stylesheet"> {% endblock %}
-<!-- end of styles -->
+<head>
+    <meta charset="utf-8"> {% if title %}
+    <title> {{ title }}</title>
+    {% else %}
+    <title> Get breaking news headlines, and search for articles from over 30,000 news sources and blogs </title>
+    {% endif %}
+</head>
 
-{% block content %}
-<div class="container-fluid">
-    <div class="in" style="background-color: #848C8E;font-size: 35px; font-family: 'Tenali Ramakrishna', sans-serif; text-align:center;">
-        <p>GENERAL SOURCES</p>
-        <div class="row">
-            <div class="column">
-                <div class="card"><a data-toggle="tab" href="#general" style="color: 848C8E;">GENERAL</a></div>
-            </div>
-            <div class="column">
-                <div class="card"><a data-toggle="tab" href="#technology">TECHNOLOGY</a></div>
-            </div>
-            <div class="column">
-                <div class="card"><a data-toggle="tab" href="#entertainment">ENTERTAINMENT</a></div>
-            </div>
-            <div class="column">
-                <div class="card"><a data-toggle="tab" href="#health">HEALTH</a></div>
+<body>
+    <!-- Content block  -->
+    {% block content %}
+    <div class="container-fluid">
+        <h3 style="color:#0f0f7a;">Top News Stories</h3>
+        <hr> {% for top_article in google_news %}
+        <div class="col-md-2">
+            <div class="thumbnail">
+                <div class="topnews">
+                    <img src={{top_article.urlToImage}} style="width:273px;height:158px">
+                    <p>{{top_article.title | truncate(50)}}</p>
+                    <a href={{top_article.url}}>Read full story</a>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="column">
-                <div class="card"><a data-toggle="tab" href="#science">SCIENCE</a></div>
+        {% endfor %}
+    </div>
+    <hr>
+    <div class="container-fluid">
+        <h2 style="color:#0f0f7a;">News by category</h2>
+        <hr>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#biz">Business news</a></li>
+            <li><a data-toggle="tab" href="#tech">Technology news</a></li>
+            <li><a data-toggle="tab" href="#ent">Entertainment news</a></li>
+            <li><a data-toggle="tab" href="#sprt">Sports news</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="biz">
+                <ul>
+                    {{ macro.displayCatNews(biz)}}
+                </ul>
             </div>
-            <div class="column">
-                <div class="card"><a data-toggle="tab" href="#political">POLITICAL</a></div>
+            <div class="tab-pane fade" id="tech">
+                <ul>
+                    {{ macro.displayCatNews(tech)}}
+                </ul>
             </div>
-            <div class="column">
-                <div class="card"><a data-toggle="tab" href="#business">BUSINESS</a></div>
+            <div class="tab-pane fade" id="ent">
+                <ul>
+                    {{ macro.displayCatNews(ent)}}
+                </ul>
             </div>
-            <div class="column">
-                <div class="card"><a data-toggle="tab" href="#sports">SPORTS</a></div>
+            <div class="tab-pane fade" id="sprt">
+                <ul>
+                    {{ macro.displayCatNews(sprt)}}
+                </ul>
             </div>
         </div>
     </div>
 
-    <div class="tab-content">
-        <!-- <div class="inn" style="background-color:#84a3cc ; font-size: 18px;text-align:center;"> -->
+    {% endblock%}
+</body>
 
-        <div id="general" class="tab-pane fade">
-
-            <!--general news section-->
-            {{macro.displayNewsList(general)}}
-        </div>
-        <div id="sports" class="tab-pane fade">
-            <!-- Sports news sources-->
-            {{ macro.displayNewsList(sports) }}text-align:center;
-        </div>
-        <div id="technology" class="tab-pane fade">
-            <!-- Technology news sources -->
-            {{ macro.displayNewsList(technology) }}
-        </div>
-        <div id="entertainment" class="tab-pane fade">
-            <!-- Entertainment news sources -->
-            {{ macro.displayNewsList(entertainment) }}
-        </div>
-        <div id="health" class="tab-pane fade">
-            <!-- Health news sources -->
-            {{ macro.displayNewsList(health) }}
-        </div>
-        <div id="business" class="tab-pane fade">
-            <!-- Business news sources -->
-            {{macro.displayNewsList(business)}}
-        </div>
-        <div id="political" class="tab-pane fade">
-            <!-- political news sources -->
-            {{ macro.displayNewsList(political) }}
-        </div>
-        <div id="science" class="tab-pane fade">
-            <!--Science news sources-->
-            {{macro.displayNewsList(science)}}
-        </div>
-    </div>
-</div>
-
-
-{% endblock %}
+</html>
