@@ -48,3 +48,7 @@
         margin-bottom: 20px;
     }
 }
+
+.thumbnail {
+    width: fit-content;
+}

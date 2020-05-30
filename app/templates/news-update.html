@@ -2,18 +2,24 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+</head>
+
 <body>
     <!-- Content block -->
     {% block content %} {% for detz_article in detz %}
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 ">
-                <img src="{{detz_article.urlToImage}}" style="width: 340px; ">
-                <h3 style="color:#7a0f28">{{detz_article.title}}</h3>
-                <p>{{detz_article.description}}</p>
-                <p><a href="{{detz_article.url}}">Click here to read more</a></p>
-                <p><strong>Published on {{detz_article.publishedAt}}</strong></p>
-                <hr>
+            <div class="card">
+                <div class="column">
+                    <img src="{{detz_article.urlToImage}}" style="width: 340px; ">
+                    <h3 style="color:#7a0f28">{{detz_article.title}}</h3>
+                    <p>{{detz_article.description}}</p>
+                    <p><a href="{{detz_article.url}}">Click here to read more</a></p>
+                    <p><strong>Published on {{detz_article.publishedAt}}</strong></p>
+                    <hr>
+                </div>
             </div>
         </div>
     </div>

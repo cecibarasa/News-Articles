@@ -16,10 +16,11 @@
     <div class="container-fluid">
         <h3 style="color:#0f0f7a;">Top News Stories</h3>
         <hr> {% for top_article in google_news %}
-        <div class="col-md-2">
+        <div class="col-md-4">
             <div class="thumbnail">
                 <div class="topnews">
-                    <img src={{top_article.urlToImage}} style="width:273px;height:158px">
+                    <img src={{top_article.urlToImage}} style="width:260px;height:158px">
+
                     <p>{{top_article.title | truncate(50)}}</p>
                     <a href={{top_article.url}}>Read full story</a>
                 </div>
@@ -37,6 +38,7 @@
             <li><a data-toggle="tab" href="#ent">Entertainment news</a></li>
             <li><a data-toggle="tab" href="#sprt">Sports news</a></li>
         </ul>
+
         <div class="tab-content">
             <div class="tab-pane fade in active" id="biz">
                 <ul>
