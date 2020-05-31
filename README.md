@@ -1,3 +1,4 @@
+[![codebeat badge](https://codebeat.co/badges/c82d3585-895d-4f2c-bec5-dde6e459b514)](https://codebeat.co/projects/github-com-cecibarasa-news-articles-master)
 ## News Articles
 
 ## By Cecilia Barasa
