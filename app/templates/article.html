@@ -1,0 +1,23 @@
+{% extends 'base.html'%} {% import 'macros.html' as macro %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NewsApp:Global News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    {% block content%}
+    <div class="container" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;">
+        <div class="row">
+            {% if articles %} {{macro.displayArticle(articles)}} {% else %}
+            <h3>This source has no articles!!</h3>
+            {% endif %}
+        </div>
+    </div>
+
+    {% endblock %}
+</body>
+
+</html>

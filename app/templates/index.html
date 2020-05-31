@@ -1,73 +1,50 @@
-{% extends 'base.html'%} {% import 'macros.html' as macro%}
-<!DOCTYPE html>
-<html>
+{% extends 'base.html'%} {% import 'macros.html' as macro %}
 
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}"> {% if title %}
-    <title> {{ title }}</title>
-    {% else %}
-    <title> Get breaking news headlines, and search for articles from over 30,000 news sources and blogs </title>
-    {% endif %}
-</head>
+<!-- Styles block -->
+{% block styles%} {{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+<link href="https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap" rel="stylesheet"> {% endblock %}
 
-<body>
-    <!-- Content block  -->
-    {% block content %}
+<!-- Content block -->
+{% block content%}
+<div class="container" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;">
     <div class="row">
-        <div class="container-fluid column">
-            <h3 style="color:#0f0f7a;">Top News Stories</h3>
-            <hr> {% for top_article in google_news %}
-            <div class="col-md-4">
-                <div class="thumbnail center">
-                    <div class="topnews">
-                        <img src={{top_article.urlToImage}} style="width:400px;height:200px" class="img-fluid">
-
-                        <p style="text-align: center;">{{top_article.title | truncate(50)}}</p>
-                        <a href={{top_article.url}}>Read full story</a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-
-        <hr>
-        <div class="container-fluid">
-            <h2 style="color:#0f0f7a;">News by category</h2>
-            <hr>
-            <!-- <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#biz">Business news</a></li>
-            <li><a data-toggle="tab" href="#tech">Technology news</a></li>
-            <li><a data-toggle="tab" href="#ent">Entertainment news</a></li>
-            <li><a data-toggle="tab" href="#sprt">Sports news</a></li>
-        </ul> -->
-
-            <div class="tab-content">
-                <div class="tab-pane fade in active" id="biz">
-                    <ul>
-                        {{ macro.displayCatNews(biz)}}
-                    </ul>
-                </div>
-                <div class="tab-pane fade" id="tech">
-                    <ul>
-                        {{ macro.displayCatNews(tech)}}
-                    </ul>
-                </div>
-                <div class="tab-pane fade" id="ent">
-                    <ul>
-                        {{ macro.displayCatNews(ent)}}
-                    </ul>
-                </div>
-                <div class="tab-pane fade" id="sprt">
-                    <ul>
-                        {{ macro.displayCatNews(sprt)}}
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <h1 style="text-align:center" id="general"> <strong>Worldwide</strong> </h1>
+        <hr> {{macro.displaySourceList(general)}}
     </div>
 
-    {% endblock%}
-</body>
+    <div class="row">
+        <h1 style="text-align:center" id="business"><strong>Business</strong> </h1>
+        <hr> {{macro.displaySourceList(business)}}
+    </div>
 
-</html>
+    <div class="row">
+        <h1 style="text-align:center" id="entertainment"><strong>Entertainment<strong></h1>
+        <hr>
+            {{macro.displaySourceList(entertainment)}}
+    </div>
+    
+    <div class="row">
+        <h1 style="text-align:center" id="health"> Health</h1>
+        <hr>
+            {{macro.displaySourceList(health)}}
+    </div>
+
+    <div class="row">
+        <h1 style="text-align:center" id="science"> Science</h1>
+        <hr>
+            {{macro.displaySourceList(science)}}
+    </div>
+
+    <div class="row">
+        <h1 style="text-align:center" id="sports"> Sports</h1>
+        <hr>
+            {{macro.displaySourceList(sports)}}
+    </div>
+
+    <div class="row">
+        <h1 style="text-align:center" id="technology"> Technology News </h1>
+        <hr>
+            {{macro.displaySourceList(technology)}}
+    </div>
+{% endblock %}

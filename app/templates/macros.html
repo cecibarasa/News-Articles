@@ -1,11 +1,19 @@
-{% macro displayCatNews(catnews_list)%} {% for catnews in catnews_list %}
-<div class="col-md-3">
-    <div class="thumbnail">
-        <div class="updates">
-            <p style="font-weight:bold">{{catnews.name}}</p>
-            <p>{{catnews.description}}</p>
-            <a href="/update/{{catnews.id}}">View</a>
-        </div>
+{% macro displaySourceList(source_list) %} {% for source in source_list %}
+<div class="col-sm-4">
+    <div class="well" style="height:280px">
+        <h4>{{ source.name}}</h4>
+        <p>{{source.description}}</p>
+        <a href="/articles/{{source.id}}" class="btn btn-info btn-md">Read More..</a>
     </div>
 </div>
-{% endfor %} {%endmacro%}
+{% endfor %} {% endmacro %} {% macro displayArticle(articles_list) %} {% for article in articles_list %} {% if article.urlToImage %}
+<div class="col-sm-4">
+    <div style="height:400px">
+        <img class="img-responsive" src="{{article.urlToImage}}" alt="{{article.title}}">
+        <h4>{{article.title}}</h4>
+        <p>{{article.description | truncate(50)}}</p>
+        <p>Created on: {{article.publishedAt}}</p>
+        <a href="{{article.url}}" class="btn btn-info">Read More...</a>
+    </div>
+</div>
+{% endif %} {% endfor %} {% endmacro %}

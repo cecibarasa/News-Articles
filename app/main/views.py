@@ -1,25 +1,32 @@
 from flask import render_template, request, redirect, url_for
 from . import main
-from ..request import get_topnews, get_catnews, get_updates
- #Views
-@main.route('/') 
+from ..models import Source, Article
+from ..requests import get_sources, get_articles
+
+#views
+@main.route('/')
 def index():
-     '''
-    View root page function that returns the index page and its data
     '''
-     #Getting top news and categorically arranged news
-     top_articles = get_topnews('google-news')
-     print(top_articles)
-     biz_articles = get_catnews('business')
-     tech_articles = get_catnews('technology')
-     ent_articles = get_catnews('entertainment')
-     sprt_articles = get_catnews('sports')
-     title = 'Home -Get breaking news headlines, and search for articles from over 30,000 news sources and blogs'
-     return render_template('index.html', title = title, google_news = top_articles, biz = biz_articles, tech = tech_articles, ent = ent_articles, sprt = sprt_articles)
+    view root function that returns the index page and its data
+    '''
+
+    business_news = get_sources('business')
+    entertainment_news = get_sources('entertainment')
+    general_news = get_sources('general')
+    health_news = get_sources('health')
+    science_news = get_sources('science')
+    sports_news = get_sources('sports')
+    technology_news = get_sources('technology')
+
+    title = 'Welcome to Global News'
+
+    return render_template('index.html', title=title, business=business_news, entertainment=entertainment_news, general=general_news, health=health_news, science=science_news, sports=sports_news, technology=technology_news)
 
 
-@main.route('/update/<id>')
-def article(id):
-    detz_articles = get_updates(id)
-    print(detz_articles)
-    return render_template('news-update.html',detz = detz_articles)
+@main.route('/articles/<source>')
+def articles(source):
+    '''
+    View articles from source
+    '''
+    articles = get_articles(source)
+    return render_template('article.html', articles=articles)
