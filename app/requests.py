@@ -100,14 +100,14 @@ def process_articles_results(articles_list):
         urlToImage = article_item.get("urlToImage")
         publishedAt = article_item.get("publishedAt")
 
-        article_object = Article(
-            author, title, description, url, urlToImage, publishedAt)
+        article_object = Article(author, title, description, url, urlToImage, publishedAt)
         article_results.append(article_object)
 
     return article_results
 
-def search_article(article_name):
-    search_article_url = 'https://newsapi.org/v2/everything?language=en&sources={}&apiKey={}'.format(api_key,article_name)
+def search_article(article_title):
+    search_article_results = []
+    search_article_url = 'https://newsapi.org/v2/everything?sources={}&apiKey={}'.format(article_title, api_key)
     with urllib.request.urlopen(search_article_url) as url:
         search_article_data = url.read()
         search_article_response = json.loads(search_article_data)
