@@ -24,6 +24,6 @@
 * `Python3.6`
 * `export API_KEY=<Your api key>`
 
-### [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/cecibarasa/Pass-lock/blob/master/license.md)
+### [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/cecibarasa/News-Articles/blob/master/license.md)
 
 ## [Support and contact details](https://www.linkedin.com/in/cecilia-barasa-4a8311195/)
