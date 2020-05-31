@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from . import main
 from ..models import Source, Article
-from ..requests import get_sources, get_articles
+from ..requests import get_sources, get_articles, search_article
 
 #views
 @main.route('/')
@@ -20,7 +20,12 @@ def index():
 
     title = 'Welcome to Global News'
 
-    return render_template('index.html', title=title, business=business_news, entertainment=entertainment_news, general=general_news, health=health_news, science=science_news, sports=sports_news, technology=technology_news)
+    search_article = request.args.get('article_query')
+
+    if search_article:
+        return redirect(url_for('search', article_name = search_article))
+    else:
+        return render_template('index.html', title=title, business=business_news, entertainment=entertainment_news, general=general_news, health=health_news, science=science_news, sports=sports_news, technology=technology_news)
 
 
 @main.route('/articles/<source>')
@@ -30,3 +35,14 @@ def articles(source):
     '''
     articles = get_articles(source)
     return render_template('article.html', articles=articles)
+
+@main.route('/search/<article_name>')
+def search(article_name):
+    '''
+    View function to display the search results
+    '''
+    article_name_list = article_name.split(" ")
+    article_name_format = "+".join(article_name_list)
+    searched_articles = search_article(article_name_format)
+    title = f'search results for {article_name}'
+    return render_template('search.html',articles = searched_articles)    
